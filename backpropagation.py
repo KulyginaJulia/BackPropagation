@@ -35,13 +35,13 @@ def softmax(x):
 def crossEntropy(x, y):
     return -np.sum(y*np.log(x.T)) / x.shape[0]
 
-def keras_():
+def keras_(hidden_dim, num_epochs, batch_size, learning_rate):
     height, width, depth = 28, 28, 1
     num_classes = 10  # there are 10 classes (1 per digit)
-    hidden_dim = 512
-    num_epochs = 20
-    batch_size = 128
-    learning_rate = 0.1
+   # hidden_dim = 512
+   # num_epochs = 20
+   # batch_size = 128
+   # learning_rate = 0.1
 
     (X_train, Y_train), (X_test, Y_test) = mnist.load_data()
     num_train = 60000
@@ -76,7 +76,7 @@ def keras_():
     model.evaluate(X_test, Y_test, verbose=1)  # Evaluate the trained model on the test set!
 
 
-def main():
+def main(hidden_dim, training_epoch, batch_size, learning_rate):
     height, width = 28, 28
     num_classes = 10  # there are 10 classes (1 per digit)
 
@@ -95,10 +95,10 @@ def main():
     Y_train = np_utils.to_categorical(Y_train, num_classes)  # One-hot encode the labels
     Y_test = np_utils.to_categorical(Y_test, num_classes)  # One-hot encode the labels
 
-    hidden_dim = 512
-    training_epoch = 20
-    batch_size = 128
-    learning_rate = 0.1
+  #  hidden_dim = 512
+  #  training_epoch = 20
+  #  batch_size = 128
+   # learning_rate = 0.1
 
     time_start = dt.now()
 
@@ -157,6 +157,10 @@ def main():
     print("Loss for test = ", cross)
 
 if __name__ == '__main__':
-    main()
+    hidden_dim = 300
+    training_epochs = 20
+    batch_size = 128
+    learning_rate = 0.1
+    main(hidden_dim, training_epochs, batch_size, learning_rate)
 
-    #keras_()
+    #keras_(hidden_dim, num_epochs, batch_size, learning_rate)
